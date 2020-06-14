@@ -1,0 +1,49 @@
+﻿<Window x:Class="WsDualHttpBinding_SqlTableDependency_PoC.WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WsDualHttpBinding_SqlTableDependency_PoC.WPF"
+        mc:Ignorable="d"
+        Title="{Binding WindowID}" Height="350" Width="700" Background="Azure"
+        WindowStartupLocation="CenterScreen"
+        Closing="Window_Closing">
+    <Grid>
+        <Grid.Resources>
+            <Style TargetType="{x:Type DataGridColumnHeader}">
+                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            </Style>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <DataGrid Grid.Row="0" 
+                  Margin="5" RowHeight="25"
+                  Name="DtgPatient" 
+                  IsReadOnly="True" 
+                  AutoGenerateColumns="False" 
+                  VerticalScrollBarVisibility="Auto"
+                  HorizontalScrollBarVisibility="Auto"
+                  HeadersVisibility="Column"
+                  AlternatingRowBackground="AliceBlue"
+                  LoadingRow="DtgPatient_LoadingRow"
+                  ItemsSource="{Binding Patients}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Index" Binding="{Binding SortOrder}" Width="Auto"/>
+                <DataGridTextColumn Header="ID" Binding="{Binding ID}" Width="Auto"/>
+                <DataGridTextColumn Header="First Name" Binding="{Binding FirstName}" Width="Auto"/>
+                <DataGridTextColumn Header="Last Name" Binding="{Binding LastName}" Width="Auto"/>
+                <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="Auto"/>
+                <DataGridTextColumn Header="Date Of Birth" Binding="{Binding DateOfBirth, StringFormat=dd-MMM-yyyy}" Width="90"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <DockPanel Grid.Row="1" Margin="5">
+            <Button Height="30" Width="90" 
+                    Content="Send Message"
+                    Click="Button_Click"/>
+            <Label Content="Message from: " VerticalAlignment="Center"/>
+            <TextBlock Name="TxtBlkReceivedMessage" Text="No message received..." VerticalAlignment="Center"/>
+        </DockPanel>
+    </Grid>
+</Window>

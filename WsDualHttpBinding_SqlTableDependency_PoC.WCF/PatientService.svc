@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="WsDualHttpBinding_SqlTableDependency_PoC.WCF.PatientService" CodeBehind="PatientService.svc.cs" %>
